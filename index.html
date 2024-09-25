@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CALCULATOR</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="container">
+       <table id="table">
+        <tr>
+            <td colspan="5">
+                <p id="result"></p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                <input type="text" name="output" id="output" oninput="condition2()">
+            </td>
+        </tr>
+        <div id="buttonContainer">
+        <tr>
+            <td><button onclick="functionOP()" class="button special">()</button></td>
+            <!--td><button onclick="functionCP()" class="button">)</b-->
+            <td><button onclick="functionPow()" class="button operative">^</button></td>
+            <td><button onclick="functionCl()" class="button special">Cl</button></td>
+            <td><button onclick="functionDel()" class="button special">Del</button></td>
+        </tr>
+        <tr>
+        </tr>
+            <td><button onclick="function7()" class="button numeric">7</button></td>
+            <td><button onclick="function8()" class="button numeric">8</button></td>
+            <td><button onclick="function9()" class="button numeric">9</button></td>
+            <td><button onclick="functionDiv()" class="button operative">÷</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="function4()" class="button numeric">4</button></td>
+            <td><button onclick="function5()" class="button numeric">5</button></td>
+            <td><button onclick="function6()" class="button numeric">6</button></td>
+            <td><button onclick="functionMul()" class="button operative">×</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="function1()" class="button numeric">1</button></td>
+            <td><button onclick="function2()" class="button numeric">2</button></td>
+            <td><button onclick="function3()" class="button numeric">3</button></td>
+            <td><button onclick="functionMin()" class="button operative">-</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="function0()" class="button numeric">0</button></td>
+            <td><button onclick="functionDeci()" class="button operative">•</button></td>
+            <td><button onclick="functionEq()" class="button operative">=</button></td>
+            <td><button onclick="functionPl()" class="button operative">+</button></td>
+        </tr>
+     </div>
+       </table>   
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
