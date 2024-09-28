@@ -1,4 +1,4 @@
-*SimpleCalculator*
+ii*SimpleCalculator*
 
 
 A beginner-friendly, responsive calculator built with HTML, CSS, and JavaScript.
@@ -44,7 +44,7 @@ git clone https://github.com/SubhamShrestha-NPU/Simple_Calculator/tree/0b9fe09c2
 
 *License*
 
-(link unavailable)
+MIT License
 
 *Contributing*
 
@@ -52,7 +52,7 @@ git clone https://github.com/SubhamShrestha-NPU/Simple_Calculator/tree/0b9fe09c2
 
 *Author*
 
-(link unavailable)
+SubhamShrestha-NPU
 
 *Version*
 
