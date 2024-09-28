@@ -22,7 +22,7 @@ A beginner-friendly, responsive calculator built with HTML, CSS, and JavaScript.
 
 ```
 bash
-git clone (link unavailable)
+git clone https://github.com/SubhamShrestha-NPU/Simple_Calculator/tree/0b9fe09c2964da6ea0d592711526a74569b4d887
 ```
 
 *Run Application*
