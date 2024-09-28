@@ -1,4 +1,4 @@
-ii*SimpleCalculator*
+*SimpleCalculator*
 
 
 A beginner-friendly, responsive calculator built with HTML, CSS, and JavaScript.
