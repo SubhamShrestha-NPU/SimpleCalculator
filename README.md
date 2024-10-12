@@ -46,10 +46,6 @@ git clone https://github.com/SubhamShrestha-NPU/Simple_Calculator/tree/0b9fe09c2
 
 MIT License
 
-*Contributing*
-
-(link unavailable) and (link unavailable) welcome!
-
 *Author*
 
 SubhamShrestha-NPU
