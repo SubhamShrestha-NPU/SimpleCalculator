@@ -1,24 +1,140 @@
 * {
     box-sizing:border-box;
 }
+
 body {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
+    margin: 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
 }
 :root {
     --width : 100%;
+    --primary-color: #007EA7;
+    --primary-hover: #0187b3;
+    --secondary-color: #1E1E2F;
+    --accent-color: #F07167;
+    --success-color: #64d2fd;
+    --background-light: #E0E6ED;
+    --text-primary: #212121;
+    --text-secondary: #0081A7;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --glow-color: rgba(100, 210, 253, 0.5);
+}
+
+@keyframes slideInUp {
+    from {
+        transform: translateY(100px) scale(0.8) rotateX(20deg);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0) scale(1) rotateX(0deg);
+        opacity: 1;
+    }
+}
+
+@keyframes buttonPulse {
+    0% {
+        box-shadow: 0 0 0 0 var(--glow-color);
+        transform: translateY(-1px) scale(1);
+    }
+    50% {
+        box-shadow: 0 0 0 15px rgba(100, 210, 253, 0.3);
+        transform: translateY(-2px) scale(1.02);
+    }
+    100% {
+        box-shadow: 0 0 0 30px rgba(100, 210, 253, 0);
+        transform: translateY(-1px) scale(1);
+    }
+}
+
+@keyframes resultFlash {
+    0% {
+        background: linear-gradient(145deg, #f0f6fa, #d0d6dd);
+        transform: scale(1);
+    }
+    25% {
+        background: linear-gradient(45deg, #64d2fd, #36d1dc);
+        transform: scale(1.02);
+    }
+    50% {
+        background: linear-gradient(45deg, #FFD700, #ffa500);
+        transform: scale(1.05);
+    }
+    75% {
+        background: linear-gradient(45deg, #64d2fd, #36d1dc);
+        transform: scale(1.02);
+    }
+    100% {
+        background: linear-gradient(145deg, #f0f6fa, #d0d6dd);
+        transform: scale(1);
+    }
+}
+
+@keyframes errorShake {
+    0%, 100% { 
+        transform: translateX(0) scale(1);
+        background: linear-gradient(145deg, #f0f6fa, #d0d6dd);
+    }
+    10%, 30%, 50%, 70%, 90% { 
+        transform: translateX(-3px) scale(1.02);
+        background: linear-gradient(145deg, #ff6b6b, #e74c3c);
+    }
+    20%, 40%, 60%, 80% { 
+        transform: translateX(3px) scale(1.02);
+        background: linear-gradient(145deg, #ff6b6b, #e74c3c);
+    }
+}
+
+@keyframes numberEntry {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px) scale(0.8);
+    }
+    50% {
+        opacity: 0.7;
+        transform: translateY(-5px) scale(1.1);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes breathe {
+    0%, 100% {
+        box-shadow: 
+            0 20px 40px var(--shadow-color),
+            0 0 0 1px rgba(255, 255, 255, 0.1);
+    }
+    50% {
+        box-shadow: 
+            0 25px 50px rgba(0, 0, 0, 0.4),
+            0 0 0 1px rgba(255, 255, 255, 0.2),
+            0 0 30px rgba(100, 210, 253, 0.1);
+    }
 }
 #container {
     position: relative;
-    background: #1E1E2F;
+    background: linear-gradient(145deg, #2a2a3e, #1a1a2e);
     max-height: 100%;
     max-width: var(--width);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: row;
+    box-shadow: 
+        0 20px 40px var(--shadow-color),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+    animation: 
+        slideInUp 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+        breathe 4s ease-in-out infinite 2s;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 #output {
     width: var(--width);
@@ -27,13 +143,23 @@ body {
     justify-content: flex-end;
     align-items: flex-end;
     text-align: right;
-    background-color: #E0E6ED;
+    background: linear-gradient(145deg, #f0f6fa, #d0d6dd);
     border: none;
-    color: #212121;
+    color: var(--text-primary);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 0 15px;
 }
+
 #output:focus{
     border: none;
     outline: none;
+    box-shadow: 
+        inset 0 2px 4px rgba(0, 0, 0, 0.1),
+        0 0 0 2px var(--success-color),
+        0 0 20px rgba(100, 210, 253, 0.3);
+    background: linear-gradient(145deg, #ffffff, #e0e6ed);
+    animation: numberEntry 0.3s ease-out;
 }
 .button {
     height: 3em;
@@ -45,54 +171,170 @@ body {
     text-align: center;
     font-size: 1.2em;
     font-weight: bold;
-    background: #007EA7;
-    /*color:#ECEFF4;*/
+    background: linear-gradient(145deg, #008bb5, #006080);
     border: none;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 
+        0 4px 8px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transform: translateY(0);
 }
+
+.button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.button:hover::before {
+    left: 100%;
+}
+
 .button:hover {
-    background: #0187b3;
+    background: linear-gradient(145deg, #0198c9, #0187b3);
+    transform: translateY(-2px);
+    box-shadow: 
+        0 8px 16px rgba(0, 0, 0, 0.3),
+        0 0 20px var(--glow-color),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
+
 .button:active {
-    transform: scale(0.98);
+    transform: translateY(-1px) scale(0.98);
+    box-shadow: 
+        0 4px 8px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    animation: buttonPulse 0.6s ease-out;
+}
+
+.button.clicked {
+    animation: buttonPulse 0.6s ease-out;
 }
 .special {
-    color :#F07167;
+    color: var(--accent-color);
+    background: linear-gradient(145deg, #d63447, #a02030);
+    transition: all 0.3s ease;
 }
+
 .special:hover {
     color: #FFB6B9;
+    background: linear-gradient(145deg, #f05467, #d63447);
+    box-shadow: 
+        0 8px 16px rgba(0, 0, 0, 0.3),
+        0 0 20px rgba(240, 113, 103, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
+
 .numeric {
     color: #b3eafc;
+    background: linear-gradient(145deg, #4a9eff, #357abd);
+    transition: all 0.3s ease;
 }
+
 .numeric:hover {
-    color: #a3d4e5;
+    color: #ffffff;
+    background: linear-gradient(145deg, #6bb6ff, #4a9eff);
+    box-shadow: 
+        0 8px 16px rgba(0, 0, 0, 0.3),
+        0 0 20px rgba(74, 158, 255, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
+
 .operative {
-    color: #64d2fd;
+    color: var(--success-color);
+    background: linear-gradient(145deg, #36d1dc, #2a9faa);
+    transition: all 0.3s ease;
 }
+
 .operative:hover {
     color: #FFD700;
+    background: linear-gradient(145deg, #5ddef7, #36d1dc);
+    box-shadow: 
+        0 8px 16px rgba(0, 0, 0, 0.3),
+        0 0 20px rgba(100, 210, 253, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 #result {
     width : var(--width);
     height: 1em;
-    background: #E0E6ED;
+    background: linear-gradient(145deg, #f0f6fa, #d0d6dd);
     margin: 1.5px 0 -4px;
-    color: #0081A7;
+    color: var(--text-secondary);
     overflow: hidden;
     text-align: right;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     font-size: 1.5em;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 0 15px;
+    font-weight: 600;
+}
+
+#result.flash {
+    animation: resultFlash 0.5s ease-in-out;
+}
+
+#result.error {
+    color: #d73d3d;
+    animation: errorShake 0.5s ease-in-out;
 }
 #container, .button {
-    border-radius: 10px;
+    border-radius: 15px;
 }
 #result {
-    border-radius: 10px 10px 0 0;
+    border-radius: 15px 15px 0 0;
 }
 #output {
-    border-radius: 0 0 10px 10px;
-} 
+    border-radius: 0 0 15px 15px;
+}
+
+/* Ripple effect */
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6);
+    transform: scale(0);
+    animation: ripple-animation 0.6s linear;
+    pointer-events: none;
+}
+
+@keyframes ripple-animation {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* Loading animation for initial display */
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.button {
+    animation: fadeInScale 0.5s ease-out;
+    animation-fill-mode: both;
+}
+
+/* Stagger the button animations */
+.button:nth-child(1) { animation-delay: 0.1s; }
+.button:nth-child(2) { animation-delay: 0.15s; }
+.button:nth-child(3) { animation-delay: 0.2s; }
+.button:nth-child(4) { animation-delay: 0.25s; }
